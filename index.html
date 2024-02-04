@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #ffc107;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            /* Assure que le header est au-dessus des autres éléments */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .links ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .links ul li {
+            margin-right: 20px;
+        }
+
+        #menu-deroulant {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+            /* Pour compenser la hauteur du header */
+        }
+
+        .title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .bar1, .bar2, .bar3 {
+            width: 35px;
+            height: 5px;
+            background-color: #333;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .change .bar1 {
+            transform: translate(0, 11px) rotate(-45deg);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: translate(0, -11px) rotate(45deg);
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+        }
+
+        .content-section.open ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-section ul li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="menu-deroulant" class="open">
+            <div class="title-section">
+                <h2>Menu</h2>
+                <div class="container" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <ul>
+                    <li><a href="houses.html">Maisons</a></li>
+                    <li><a href="story.html">Histoire</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h1> Bienvenue sur cette page!</h1>
+        <!-- Le reste de votre contenu ici -->
+    </div>
+
+    <script>
+        function myFunction(x) {
+            x.classList.toggle("change");
+            var contentSection = document.querySelector('.content-section');
+            contentSection.classList.toggle("open");
+        }
+    </script>
+</body>
+
+</html>

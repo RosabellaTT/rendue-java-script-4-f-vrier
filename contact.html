@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Contact</title>
+    <link rel="stylesheet" href="housesstyle.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #13126d; /* Ajout d'une couleur de fond */
+        }
+ 
+        /* Styles de la barre en haut*/
+        .navbar {
+            background-color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .logo img {
+            height: 30px;
+        }
+
+        .links ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .links ul li {
+            margin-right: 20px;
+        }
+
+        /* formulaire */
+        .container {
+            background-color: #fff;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* Styles des étiquettes */
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Styles barres de saisie */
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Styles bouton d'envoi */
+        input[type="submit"] {
+            background-color: #0a0d40;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Styles pour le texte de confirmation */
+        .confirmation-message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #0a0d40;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="https://logos-world.net/wp-content/uploads/2020/04/Harry-Potter-Emblem.png" alt="page d'acceuil"></a>
+        <div class="links">
+            <ul>
+                <li><a href="story.html">Histoire</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- formulaire -->
+    <div class="container">
+        <!-- Contact -->
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <!-- Champ de saisie pour le nom -->
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" minlength="2" required>
+
+            <!-- Email -->
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+
+            <!-- Message -->
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <!-- Adresse -->
+            <label for="address">Adresse :</label>
+            <input type="text" id="address" name="address" minlength="2" required>
+
+            <!-- Ville -->
+            <label for="city">Ville :</label>
+            <input type="text" id="city" name="city" minlength="2" required>
+
+            <!-- Code postal -->
+            <label for="postalCode">Code Postal :</label>
+            <input type="text" id="postalCode" name="postalCode" pattern="[0-9]{5}" required>
+
+            <!-- Pays -->
+            <label for="country">Pays :</label>
+            <select id="country" name="country" required>
+                <!-- Choisir un pays-->
+                    <option value="">Sélectionnez un pays</option>
+                    <option value="france">France</option>
+                    <option value="usa">États-Unis</option>
+                    <option value="canada">Canada</option>
+                    <option value="uk">Royaume-Uni</option>
+                    <option value="germany">Allemagne</option>
+                
+            </select>
+
+            <!-- Mot de passe -->
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
+
+            <!-- Confirmation du mot de passe -->
+            <label for="confirmPassword">Confirmer le mot de passe :</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <!-- Bouton envoyer -->
+            <input type="submit" value="Envoyer">
+        </form>
+
+        <!-- Message de confirmation -->
+        <div class="confirmation-message" id="confirmationMessage">Formulaire soumis avec succès!</div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var address = document.getElementById('address').value;
+            var city = document.getElementById('city').value;
+            var postalCode = document.getElementById('postalCode').value;
+            var country = document.getElementById('country').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation des champs
+            if (
+                name.length < 2 ||
+                email.indexOf('@') === -1 ||
+                address.length < 2 ||
+                city.length < 2 ||
+                postalCode.length !== 5 ||
+                country === '' ||
+                password.length < 6 ||
+                !password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/) ||
+                password !== confirmPassword
+            ) {
+                alert('Veuillez remplir correctement tous les champs.');
+                return false;
+            }
+
+            // Afficher le message de confirmation
+            document.getElementById('confirmationMessage').style.display = 'block';
+
+            // Masquer le formulaire
+            document.querySelector('.container form').style.display = 'none';
+
+            return false;
+        }
+    </script>
+</body>
+</html>
